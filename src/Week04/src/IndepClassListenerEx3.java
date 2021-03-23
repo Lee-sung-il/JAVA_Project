@@ -6,10 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class IndepClassListenerEx2 extends JFrame {
+public class IndepClassListenerEx3 extends JFrame implements ActionListener {
     private JButton btn = new JButton("Action");
 
-    IndepClassListenerEx2() {
+    IndepClassListenerEx3() {
         this.setTitle("Action Listener 에제");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.formDesign();
@@ -26,24 +26,22 @@ public class IndepClassListenerEx2 extends JFrame {
 
 
     public void eventHandler() {
-        btn.addActionListener(new MyActionListenerEx2());
+        btn.addActionListener(this);
     }
 
-    class MyActionListenerEx2 implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            btn = (JButton) e.getSource();
-            if (btn.getText().equals("Action")) {
-                btn.setText("액션");
-            } else {
-                btn.setText("Action");
-            }
-        }
-    }
 
     public static void main(String[] args) {
-        new IndepClassListenerEx2();
+        new IndepClassListenerEx3();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand() == "Action") {
+            btn.setText("액션");
+        }else {
+            btn.setText("Action");
+        }
+        setTitle(btn.getText());
     }
 }
 
