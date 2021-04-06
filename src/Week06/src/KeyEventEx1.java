@@ -1,0 +1,63 @@
+package Week06.src;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+public class KeyEventEx1 extends JFrame implements KeyListener{
+    private JLabel la = new JLabel("Love Java");
+    private JPanel p = new JPanel();
+    KeyEventEx1() {
+        this.setTitle("+,-키로 폰트크기 조절");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.formDesign();
+        this.eventHandler();
+        this.setSize(300,200);
+        this.setVisible(true);
+
+        la.setFocusable(true);
+        la.requestFocus();
+    }
+
+    public void formDesign() {
+        this.add(p);
+        p.add(la);
+        la.setFont(new Font("TimesRome",Font.BOLD,10));
+    }
+
+    public void eventHandler() {
+        la.addKeyListener(this);
+    }
+
+    public static void main(String[] args) {
+        new KeyEventEx1();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyChar() == '+') {
+            JLabel la = (JLabel) e.getSource();
+            Font f = la.getFont();
+            int size = f.getSize();
+            la.setFont(new Font("TimesRome",Font.BOLD,size+5));
+        }else if (e.getKeyChar() == '-') {
+            JLabel la = (JLabel) e.getSource();
+            Font f = la.getFont();
+            int size = f.getSize();
+            if (size <= 5)
+                return;
+            la.setFont(new Font("TimesRome",Font.BOLD,size-5));
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+}
