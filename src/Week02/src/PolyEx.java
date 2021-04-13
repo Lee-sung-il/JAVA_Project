@@ -32,7 +32,7 @@ public class PolyEx {
         bp.doA();
         aap.doA();
         aap.doC();
-//      aap.doB();
+        //aap.doB();
         //다형성으로 생성한 객체(변수)는 부모클래스에 없고 자식클래스에만 있는
         //메소드는 바로 접근할 수 없고 형변환을 통해서 접근이 가능하다.
         B bbp = (B) aap;
