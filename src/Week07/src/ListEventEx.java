@@ -49,7 +49,8 @@ public class ListEventEx extends JFrame {
         nameList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-               la.setText();
+                String text = nameList.getSelectedValue();
+               la.setText(text);
             }
         });
     }
