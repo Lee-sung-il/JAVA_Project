@@ -36,38 +36,38 @@ public class StudentDAO {
         return str;
     }
 
-    public void update() {
-        System.out.println("수정할 ID를 입력하세요>>");
-        id = scan.nextLine().trim();
-
-        for (int i =0;i<al.size();i++) {
+    public boolean update(String id, String name, int score) {
+        for (int i = 0; i < al.size(); i++) {
             Student stu = al.get(i);
             if (id.equals(stu.getId())) {
                 al.remove(i);
-            }else  {
+            } else {
                 System.out.println("수정할 ID가 없습니다.");
-                return;
+                return false;
             }
         }
+        Student stu = new Student(id, name, score);
+        al.add(stu);
+        return true;
     }
-    public void  delete() {
-        System.out.println("삭제할 학생 ID를 입력하세요 >>");
-        String del_id = scan.nextLine();
+
+    public boolean delete(String del_id) {
         boolean found = false;
         int tempIndex = 0;
         for (int i = 0; i < al.size(); i++) {
             Student stu = al.get(i);
             if (del_id.equals(stu.getId())) {
-                found =true;
+                found = true;
                 tempIndex = i;
             }
 
         }
         if (found) {
-          al.remove(tempIndex);
+            al.remove(tempIndex);
             System.out.println("ID가 삭제됨");
-        }else {
+        } else {
             System.out.println("삭제할 ID가 없읍!");
         }
+        return true;
     }
 }

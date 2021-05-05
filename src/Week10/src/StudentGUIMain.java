@@ -15,7 +15,7 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
     private JLabel id_L, name_L, score_L;
     private JTextField id_T, name_T, score_T;
     private JTextArea output_T;
-    private JButton regist, view, exit;
+    private JButton regist, view, update, delete, exit;
     private JPanel side_P, input_P, south_P;
     private StudentDAO dao;
     private ArrayList<Student> al;
@@ -49,6 +49,8 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
 
         regist = new JButton("등록");
         view = new JButton("조회");
+        update = new JButton("수정");
+        delete = new JButton("삭제");
         exit = new JButton("종료");
 
         this.add(side_P, BorderLayout.WEST);
@@ -62,10 +64,12 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         input_P.add(score_L);
         input_P.add(score_T);
 
-        this.add(output_T,BorderLayout.CENTER);
-        this.add(south_P,BorderLayout.SOUTH);
+        this.add(output_T, BorderLayout.CENTER);
+        this.add(south_P, BorderLayout.SOUTH);
         south_P.add(regist);
         south_P.add(view);
+        south_P.add(update);
+        south_P.add(delete);
         south_P.add(exit);
 
         name_T.setEditable(false);
@@ -82,6 +86,8 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
 
         regist.addActionListener(this);
         view.addActionListener(this);
+        update.addActionListener(this);
+        delete.addActionListener(this);
         exit.addActionListener(this);
     }
 
@@ -92,11 +98,11 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
     @Override
     public void focusGained(FocusEvent e) {
         if (e.getSource().equals(id_T)) {
-            output_T.setText("ID를 입력해주세요"+'\n');
-        }else if (e.getSource().equals(name_T)) {
-            output_T.setText("이름을 입력해주세요"+'\n');
-        }else if (e.getSource().equals(score_T)) {
-            output_T.setText("성적를 입력해주세요"+'\n');
+            output_T.setText("ID를 입력해주세요" + '\n');
+        } else if (e.getSource().equals(name_T)) {
+            output_T.setText("이름을 입력해주세요" + '\n');
+        } else if (e.getSource().equals(score_T)) {
+            output_T.setText("성적를 입력해주세요" + '\n');
         }
     }
 
@@ -105,40 +111,49 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         if (e.getSource().equals(id_T)) {
             if (id_T.getText() == "") {
                 output_T.setText("ID가 없습니다.");
-            }else {
+            } else {
                 name_T.setEditable(true);
             }
-        }else if (e.getSource().equals(name_T)) {
+        } else if (e.getSource().equals(name_T)) {
             if (name_T.getText() == "") {
                 output_T.setText("이름이 없습니다.");
-            }else {
+            } else {
                 score_T.setEditable(true);
             }
-        }else if (e.getSource().equals(score_T)) {
+        } else if (e.getSource().equals(score_T)) {
             if (score_T.getText() == "") {
                 output_T.setText("성적이 없습니다.");
-            }else {
+            } else {
                 regist.setEnabled(true);
                 regist.requestFocus();
             }
         }
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("등록")) {
-            if (dao.insert(id_T.getText(),name_T.getText(),Integer.parseInt(score_T.getText()))) {
+            if (dao.insert(id_T.getText(), name_T.getText(), Integer.parseInt(score_T.getText()))) {
                 output_T.setText("등록이 되었습니다.");
-            }else {
+            } else {
                 output_T.setText("같은 ID가 존재합니다.");
             }
             id_T.setText("");
             name_T.setText("");
             score_T.setText("");
             view.setEnabled(true);
-        }else if (e.getActionCommand().equals("조회")) {
+        } else if (e.getActionCommand().equals("조회")) {
             output_T.setText(dao.inquire());
-        }else if (e.getActionCommand().equals("종료")) {
+        } else if (e.getActionCommand().equals("종료")) {
             System.exit(0);
+        } else if (e.getActionCommand().equals("수정")) {
+        if (dao.update(id_T.getText(),name_T.getText(),Integer.parseInt(score_T.getText()))) {
+            output_T.setText("수정 되었습니다.");
+            }
+        } else if (e.getActionCommand().equals("삭제")) {
+            if (dao.delete(id_T.getText())){
+                output_T.setText("삭제 되었습니다.");
+            }
         }
 
     }
