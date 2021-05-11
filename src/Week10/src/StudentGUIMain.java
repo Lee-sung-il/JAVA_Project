@@ -161,9 +161,13 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
                 output_T.setText("삭제 되었습니다.");
             }
         }else if (e.getActionCommand().equals("성적순 정렬")) {
-
-        }else if (e.getActionCommand().equals("이름 순 정렬")) {
-
+            if (dao.scoreSort()) {
+                output_T.setText("성적순으로 정렬되었습니다.");
+            }
+        }else if (e.getActionCommand().equals("이름순 정렬")) {
+            if (dao.nameSort()) {
+                output_T.setText("이름순으로 정렬되었습니다.");
+            }
         }
 
     }

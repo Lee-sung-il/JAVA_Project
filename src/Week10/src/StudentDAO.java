@@ -1,6 +1,7 @@
 package Week10.src;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class StudentDAO {
@@ -22,8 +23,14 @@ public class StudentDAO {
             if (id.equals(s.getId()))
                 return false;
         }
-        Student stu = new Student(id, name, score);
-        al.add(stu);
+        if (score < 100 && score > 0) {
+            try {
+                Student stu = new Student(id, name, score);
+                al.add(stu);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         return true;
     }
 
@@ -68,6 +75,18 @@ public class StudentDAO {
         } else {
             System.out.println("삭제할 ID가 없읍!");
         }
+        return true;
+    }
+
+    public boolean scoreSort() {
+        Collections.sort(al,Student.scoreComparator);
+        inquire();
+        return true;
+    }
+
+    public boolean nameSort() {
+        Collections.sort(al, Student.nameComparator);
+        inquire();
         return true;
     }
 }

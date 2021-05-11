@@ -1,6 +1,8 @@
 package Week10.src;
 
-public class Student {
+import java.util.Comparator;
+
+public class Student implements Comparable<Student> {
     private String id; //학번
     private String name; //이름
     private int score; // 자바 성적
@@ -46,4 +48,23 @@ public class Student {
        return result;
     }
 
+    @Override
+    public int compareTo(Student o) {
+        // TODO Auto-generated method stub
+        return name.compareTo(o.name);
+    }
+
+    public static Comparator<Student> nameComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student student1, Student student2) {
+            return student1.name.compareTo(student2.name);
+        }
+    };
+
+    public static Comparator<Student> scoreComparator = new Comparator<Student>() {
+        @Override
+        public int compare(Student studentScore1,Student studentScore2) {
+            return studentScore2.score - studentScore1.score;
+        }
+    };
 }
