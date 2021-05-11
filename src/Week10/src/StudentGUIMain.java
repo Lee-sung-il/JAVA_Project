@@ -15,7 +15,7 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
     private JLabel id_L, name_L, score_L;
     private JTextField id_T, name_T, score_T;
     private JTextArea output_T;
-    private JButton regist, view, update, delete, exit;
+    private JButton regist, view, update, delete, exit,score_sort,name_sort;
     private JPanel side_P, input_P, south_P;
     private StudentDAO dao;
     private ArrayList<Student> al;
@@ -25,7 +25,7 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.formDesign();
         this.eventHandler();
-        this.setSize(530, 230);
+        this.setSize(600, 230);
         this.setVisible(true);
 
         dao = new StudentDAO();
@@ -52,6 +52,8 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         update = new JButton("수정");
         delete = new JButton("삭제");
         exit = new JButton("종료");
+        score_sort = new JButton("성적순 정렬");
+        name_sort = new JButton("이름순 정렬");
 
         this.add(side_P, BorderLayout.WEST);
         side_P.setLayout(new GridLayout(2, 1));
@@ -70,6 +72,8 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         south_P.add(view);
         south_P.add(update);
         south_P.add(delete);
+        south_P.add(score_sort);
+        south_P.add(name_sort);
         south_P.add(exit);
 
         name_T.setEditable(false);
@@ -89,6 +93,8 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
         update.addActionListener(this);
         delete.addActionListener(this);
         exit.addActionListener(this);
+        score_sort.addActionListener(this);
+        name_sort.addActionListener(this);
     }
 
     public static void main(String[] args) {
@@ -154,6 +160,10 @@ public class StudentGUIMain extends JFrame implements FocusListener, ActionListe
             if (dao.delete(id_T.getText())){
                 output_T.setText("삭제 되었습니다.");
             }
+        }else if (e.getActionCommand().equals("성적순 정렬")) {
+
+        }else if (e.getActionCommand().equals("이름 순 정렬")) {
+
         }
 
     }
