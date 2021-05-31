@@ -23,7 +23,7 @@ public class StudentDAO {
             if (id.equals(s.getId()))
                 return false;
         }
-        if (score < 100 && score > 0) {
+        if (score <= 100 && score >= 0) {
             try {
                 Student stu = new Student(id, name, score);
                 al.add(stu);
