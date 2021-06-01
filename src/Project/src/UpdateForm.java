@@ -3,31 +3,33 @@ package Project.src;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class InsertDAO extends JDialog {
+public class UpdateForm extends JDialog {
     private JPanel contentPane;
     private RoundedButton buttonOK;
     private RoundedButton buttonCancel;
+    private JLabel Title;
     private JTextField id_T;
     private JTextField name_T;
     private JTextField dept_T;
     private JLabel id_L;
     private JLabel name_L;
     private JLabel dept_L;
-    private JLabel Title;
     private JLabel score_L;
     private JTextField score_T;
     private StudentDAO dao;
 
-    public InsertDAO() {
+    public UpdateForm() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         dao = new StudentDAO();
 
+
+
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
-                InsertDAO.this.setVisible(false);
+                UpdateForm.this.setVisible(false);
             }
         });
 
@@ -53,19 +55,15 @@ public class InsertDAO extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK()  {
+    private void onOK() {
         // add your code here
-        if (dao.insert(id_T.getText(), name_T.getText(), dept_T.getText(), score_T.getText())) {
+        if (dao.update(id_T.getText(), name_T.getText(), dept_T.getText(),score_T.getText())) {
             StudentGUI studentGUI = new StudentGUI();
-            studentGUI.output_T.setText("등록이 되었습니다.");
-        } else {
+               studentGUI.output_T.setText("수정 되었습니다.");
+        }else {
             StudentGUI studentGUI = new StudentGUI();
-            studentGUI.output_T.setText("등록하는데 오류가 발생했습니다.");
+            studentGUI.output_T.setText("수정 실패했습니다.");
         }
-        id_T.setText("");
-        name_T.setText("");
-        dept_T.setText("");
-        score_T.setText("");
     }
 
     private void onCancel() {
@@ -76,9 +74,10 @@ public class InsertDAO extends JDialog {
     }
 
     public static void main(String[] args) {
-        InsertDAO dialog = new InsertDAO();
+        UpdateForm dialog = new UpdateForm();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
     }
+
 }

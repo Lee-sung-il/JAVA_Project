@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class DeleteDAO extends JDialog {
+public class DeleteForm extends JDialog {
     private JPanel contentPane;
     private RoundedButton buttonOK;
     private RoundedButton buttonCancel;
@@ -21,7 +21,7 @@ public class DeleteDAO extends JDialog {
     ResultSet rs = null;
     ResultSetMetaData rsmd;
 
-    public DeleteDAO() {
+    public DeleteForm() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -30,7 +30,7 @@ public class DeleteDAO extends JDialog {
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
-                DeleteDAO.this.setVisible(false);
+                DeleteForm.this.setVisible(false);
             }
         });
 
@@ -70,12 +70,12 @@ public class DeleteDAO extends JDialog {
         // add your code here if necessary
         StudentGUI studentGUI = new StudentGUI();
         studentGUI.setVisible(true);
-        DeleteDAO.this.setVisible(false);
+        DeleteForm.this.setVisible(false);
     }
 
 
     public static void main(String[] args) {
-        DeleteDAO dialog = new DeleteDAO();
+        DeleteForm dialog = new DeleteForm();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

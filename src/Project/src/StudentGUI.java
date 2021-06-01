@@ -7,11 +7,11 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class StudentGUI extends JFrame implements ActionListener {
-    private InsertDAO insertDAO = new InsertDAO();
-    private UpdateDAO updateDAO = new UpdateDAO();
-    private DeleteDAO deleteDAO = new DeleteDAO();
+    private InsertForm insertForm = new InsertForm();
+    private UpdateForm updateForm = new UpdateForm();
+    private DeleteForm deleteForm = new DeleteForm();
     private Exit exit = new Exit(this, "종료");
-    private InquireDAO inquireDAO = new InquireDAO(this, "테이블 조회");
+    private InquireForm inquireForm = new InquireForm(this, "테이블 조회");
     public JTextArea output_T;
     private RoundedButton regist, update, delete, exitBtn, InquireBtn, longOut;
     private JPanel side_P, input_P, south_P;
@@ -77,21 +77,21 @@ public class StudentGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("등록")) {
             this.setVisible(false);
-            insertDAO.setSize(300, 300);
-            insertDAO.setVisible(true);
+            insertForm.setSize(300, 300);
+            insertForm.setVisible(true);
         } else if (e.getActionCommand().equals("수정")) {
             this.setVisible(false);
-            updateDAO.setSize(300, 300);
-            updateDAO.setVisible(true);
+            updateForm.setSize(300, 300);
+            updateForm.setVisible(true);
         } else if (e.getActionCommand().equals("삭제")) {
             this.setVisible(false);
-            deleteDAO.setSize(300, 300);
-            deleteDAO.setVisible(true);
+            deleteForm.setSize(300, 300);
+            deleteForm.setVisible(true);
         } else if (e.getActionCommand().equals("테이블 조회")) {
-            inquireDAO.table.setAutoCreateRowSorter(true);
-            dao.tableInquire(inquireDAO.table);
-            inquireDAO.setSize(600, 300);
-            inquireDAO.setVisible(true);
+            inquireForm.table.setAutoCreateRowSorter(true);
+            dao.tableInquire(inquireForm.table);
+            inquireForm.setSize(600, 300);
+            inquireForm.setVisible(true);
         } else if (e.getActionCommand().equals("종료")) {
             this.setVisible(false);
             exit.setSize(300, 300);

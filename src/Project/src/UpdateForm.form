@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Project.src.InsertDAO">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Project.src.UpdateForm">
   <grid id="cbd77" binding="contentPane" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
@@ -33,7 +33,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="등록"/>
+                  <text value="수정"/>
                 </properties>
               </component>
               <component id="5723f" class="Project.src.RoundedButton" binding="buttonCancel">
@@ -58,47 +58,41 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="a9d89" class="javax.swing.JLabel" binding="id_L">
+          <component id="a5741" class="javax.swing.JLabel" binding="id_L">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="학번"/>
             </properties>
           </component>
-          <component id="1d7eb" class="javax.swing.JLabel" binding="name_L">
+          <component id="df50" class="javax.swing.JLabel" binding="name_L">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="이름"/>
             </properties>
           </component>
-          <component id="a196b" class="javax.swing.JLabel" binding="dept_L">
+          <component id="2a49c" class="javax.swing.JLabel" binding="dept_L">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="학과"/>
             </properties>
           </component>
-          <component id="852da" class="javax.swing.JTextField" binding="id_T">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
-          <component id="ce8f8" class="javax.swing.JTextField" binding="name_T">
+          <component id="a4ab" class="javax.swing.JTextField" binding="name_T">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="true"/>
+            </properties>
           </component>
-          <component id="fe290" class="javax.swing.JTextField" binding="dept_T">
+          <component id="2e7e0" class="javax.swing.JTextField" binding="dept_T">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -106,7 +100,18 @@
             </constraints>
             <properties/>
           </component>
-          <component id="e8d7a" class="javax.swing.JLabel" binding="score_L">
+          <component id="4a49f" class="javax.swing.JTextField" binding="id_T">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="true"/>
+              <enabled value="true"/>
+            </properties>
+          </component>
+          <component id="6bf61" class="javax.swing.JLabel" binding="score_L">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -114,7 +119,7 @@
               <text value="성적"/>
             </properties>
           </component>
-          <component id="e839e" class="javax.swing.JTextField" binding="score_T">
+          <component id="4bce7" class="javax.swing.JTextField" binding="score_T">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -124,13 +129,13 @@
           </component>
         </children>
       </grid>
-      <component id="9db23" class="javax.swing.JLabel" binding="Title">
+      <component id="97654" class="javax.swing.JLabel" binding="Title">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <font size="36"/>
-          <text value="등록"/>
+          <text value="수정"/>
         </properties>
       </component>
     </children>

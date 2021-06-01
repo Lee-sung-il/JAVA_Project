@@ -2,18 +2,13 @@ package Project.src;
 
 
 import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.sql.*;
 
 
-public class InquireDAO extends JDialog {
+public class InquireForm extends JDialog {
 
     String[] colName = {"학번", "이름", "학과", "성적", "학점"};
     String[] combo = {"선택","학번", "이름", "학과", "성적"};
@@ -36,7 +31,7 @@ public class InquireDAO extends JDialog {
     private JTextField textField = new JTextField(20);
     private StudentDAO dao;
 
-    public InquireDAO(JFrame frame, String title) {
+    public InquireForm(JFrame frame, String title) {
         super(frame, title);
         this.dialogDesign();
         this.dialogEvent();
@@ -69,7 +64,7 @@ public class InquireDAO extends JDialog {
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                InquireDAO.this.setVisible(false);
+                InquireForm.this.setVisible(false);
             }
         });
 
