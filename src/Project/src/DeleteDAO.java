@@ -70,7 +70,7 @@ public class DeleteDAO extends JDialog {
         // add your code here if necessary
         StudentGUI studentGUI = new StudentGUI();
         studentGUI.setVisible(true);
-        dispose();
+        DeleteDAO.this.setVisible(false);
     }
 
 
