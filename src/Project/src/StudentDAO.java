@@ -95,28 +95,9 @@ public class StudentDAO extends JFrame {
 
 
     public boolean update(String id, String name, String dept, String score) {
-        Student stu = null;
+        Student stu = new Student();
         ArrayList<Student> arrayList;
         boolean result = false;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            sqlconn = DriverManager.getConnection(dataconn, username, password);
-            pst = sqlconn.prepareStatement("select * from Student");
-            rs = pst.executeQuery();
-            while (rs.next()) {
-                stu = new Student();
-                stu.setId(rs.getString("ID"));
-                stu.setName(rs.getString("NAME"));
-                stu.setDept(rs.getString("Dept"));
-                stu.setScore(rs.getInt("SCORE"));
-            }
-            if (!id.equals(stu.getId())) {
-                JOptionPane.showMessageDialog(this, "수정에 실패 했습니다.");
-                return false;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         if (id.equals("")) {
             JOptionPane.showMessageDialog(this, "학번을 입력하세요");
             return false;
@@ -130,20 +111,40 @@ public class StudentDAO extends JFrame {
             JOptionPane.showMessageDialog(this, "성적을 입력하세요");
             return false;
         }
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            sqlconn = DriverManager.getConnection(dataconn, username, password);
+            pst = sqlconn.prepareStatement("select * from Student");
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                stu.setId(rs.getString(2));
+            }
+            if (!stu.getId().equals(id)) {
+                JOptionPane.showMessageDialog(this, "수정에 실패 했습니다.");
+                result = false;
+            } else if (id.equals("1")) {
+                JOptionPane.showMessageDialog(this, "관리자는 수정 할수 없습니다.");
+                result = false;
+            } else {
+                JOptionPane.showMessageDialog(this, "수정되었습니다.");
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         if (Integer.parseInt(String.valueOf(score)) <= 100 && Integer.parseInt(String.valueOf(score)) >= 0) {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 sqlconn = DriverManager.getConnection(dataconn, username, password);
-                pst = sqlconn.prepareStatement("update Student SET ID = ?,NAME =?,DEPT = ?, SCORE =? WHERE ID = ?");
-                pst.setString(1, id);
-                pst.setString(2, name);
-                pst.setString(3, dept);
-                pst.setInt(4, Integer.parseInt(score));
-                pst.setString(5, id);
+                pst = sqlconn.prepareStatement("update Student SET NAME = ?, DEPT = ? , SCORE = ? WHERE ID = ? AND ID <> '1'");
+                pst.setString(1, name);
+                pst.setString(2, dept);
+                pst.setInt(3, Integer.parseInt(String.valueOf(Integer.parseInt(score))));
+                pst.setString(4, id);
                 pst.executeUpdate();
-                JOptionPane.showMessageDialog(this, "수정에 성공 했습니다.");
-                result = true;
+
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -154,38 +155,47 @@ public class StudentDAO extends JFrame {
         return result;
     }
 
+
     public boolean delete(String id) {
-        Student stu = null;
+        Student stu = new Student();
         ArrayList<Student> arrayList;
+        boolean result = false;
+        if (id.equals("")) {
+            JOptionPane.showMessageDialog(this, "학번을 입력하세요");
+            return false;
+        }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlconn = DriverManager.getConnection(dataconn, username, password);
             pst = sqlconn.prepareStatement("select * from Student");
             rs = pst.executeQuery();
             while (rs.next()) {
-                stu = new Student();
-                stu.setId(rs.getString("ID"));
-                stu.setName(rs.getString("NAME"));
-                stu.setScore(rs.getInt("SCORE"));
+                stu.setId(rs.getString(2));
             }
-            if (!id.equals(stu.getId())) {
+            if (!stu.getId().equals(id)) {
                 JOptionPane.showMessageDialog(this, "삭제에 실패 했습니다.");
-                return false;
+                result = false;
+            } else if (id.equals("1")) {
+                JOptionPane.showMessageDialog(this, "관리자는 삭제 할수 없습니다.");
+                result = false;
+            } else {
+                JOptionPane.showMessageDialog(this, "삭제 되었습니다.");
+                result = true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             sqlconn = DriverManager.getConnection(dataconn, username, password);
-            pst = sqlconn.prepareStatement("delete from Student WHERE ID = ?");
+            pst = sqlconn.prepareStatement("delete from Student WHERE ID = ? AND ID <> '1'");
             pst.setString(1, id);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "삭제에 성공 했습니다.");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return result;
     }
 
     public boolean tableInquire(JTable table) {
@@ -301,7 +311,7 @@ public class StudentDAO extends JFrame {
                             "             WHEN (SCORE >= '65' ) then 'D+'\n" +
                             "             WHEN (SCORE>= '60' AND SCORE < '65') THEN 'D'\n" +
                             "             ELSE 'F'\n" +
-                            "           END) AS 'Grade'from Student WHERE DEPT = ?");
+                            "           END) AS 'Grade'from Student WHERE DEPT like '%' ? '%'");
                     pst.setString(1, jTextField.getText());
                     rs = pst.executeQuery();
                     while (rs.next()) {
@@ -406,7 +416,8 @@ public class StudentDAO extends JFrame {
                     "             WHEN (SCORE >= '65' ) then 'D+'\n" +
                     "             WHEN (SCORE>= '60' AND SCORE < '65') THEN 'D'\n" +
                     "             ELSE 'F'\n" +
-                    "           END) AS 'Grade'from Student ORDER BY NAME ASC ,SCORE DESC ");
+                    "           END) AS 'Grade'from Student " +
+                    "ORDER BY NAME ASC ,SCORE DESC ");
             rs = pst.executeQuery();
             while (rs.next()) {
                 rowName[0] = rs.getString(2);
@@ -441,7 +452,8 @@ public class StudentDAO extends JFrame {
                     "             WHEN (SCORE >= '65' ) then 'D+학점'\n" +
                     "             WHEN (SCORE>= '60' AND SCORE < '65') THEN 'D'\n" +
                     "             ELSE 'F'\n" +
-                    "           END) AS 'Grade'from Student ORDER BY SCORE DESC ,NAME ASC");
+                    "           END) AS 'Grade'from Student " +
+                    "ORDER BY SCORE DESC ,NAME ASC");
             rs = pst.executeQuery();
             while (rs.next()) {
                 rowName[0] = rs.getString(2);

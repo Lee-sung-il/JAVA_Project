@@ -2,7 +2,6 @@ package Project.src;
 
 import javax.swing.*;
 import java.awt.event.*;
-import java.sql.SQLException;
 
 public class InsertDAO extends JDialog {
     private JPanel contentPane;
@@ -27,13 +26,7 @@ public class InsertDAO extends JDialog {
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                try {
-                    onOK();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException classNotFoundException) {
-                    classNotFoundException.printStackTrace();
-                }
+                onOK();
                 InsertDAO.this.setVisible(false);
             }
         });
@@ -60,7 +53,7 @@ public class InsertDAO extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    private void onOK() throws SQLException, ClassNotFoundException {
+    private void onOK()  {
         // add your code here
         if (dao.insert(id_T.getText(), name_T.getText(), dept_T.getText(), score_T.getText())) {
             StudentGUI studentGUI = new StudentGUI();

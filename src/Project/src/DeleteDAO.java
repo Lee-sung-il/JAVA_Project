@@ -74,7 +74,6 @@ public class DeleteDAO extends JDialog {
     }
 
 
-
     public static void main(String[] args) {
         DeleteDAO dialog = new DeleteDAO();
         dialog.pack();
