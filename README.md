@@ -21,7 +21,8 @@
 
 
 ## 실행 화면
-![Image](https://github.com/user-attachments/assets/ddc2991a-b528-4456-ba26-e91d2187de69)
+
+<img src="https://github.com/user-attachments/assets/ddc2991a-b528-4456-ba26-e91d2187de69" width="800"/>
 
 ## 📁 폴더 구조
 
