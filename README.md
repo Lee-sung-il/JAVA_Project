@@ -91,15 +91,5 @@ String user = "root";
 String password = "yourpassword";
 ```
 
-4. IntelliJ에서 `StudentGUI` 실행
+4. IntelliJ에서 `login` 실행
 
-## ✨ 추후 개선 사항
-
-- 검색 기능 추가
-- 성적 관리 기능 확장
-- 로그인 및 권한 관리 추가
-
-## 📜 라이선스
-
-MIT License  
-Copyright (c) 2025
