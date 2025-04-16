@@ -21,7 +21,7 @@
 
 
 ## 실행 화면
-Uploading "read.gif"
+![Image](https://github.com/user-attachments/assets/ddc2991a-b528-4456-ba26-e91d2187de69)
 
 ## 📁 폴더 구조
 
