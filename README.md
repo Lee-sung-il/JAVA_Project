@@ -70,7 +70,7 @@ CREATE DATABASE studentdb;
 USE studentdb;
 
 CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id  VARCHAR(50) PRIMARY KEY,
     name VARCHAR(50),
     age INT,
     gender CHAR(1)
