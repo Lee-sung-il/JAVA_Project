@@ -1,3 +1,4 @@
+
 # JAVA_Project - 학생 관리 시스템
 
 이 프로젝트는 Java의 **Swing GUI**와 **MySQL 데이터베이스(JDBC)**를 활용한 **학생 관리 프로그램**입니다. 사용자는 학생 정보를 등록, 조회, 수정, 삭제(CRUD)할 수 있습니다.
@@ -12,31 +13,87 @@
 
 ## 🛠️ 사용 기술
 
-- **Java 17+**
-- **Swing (GUI)**
-- **MySQL 8.x**
-- **JDBC (MySQL Connector)**
+- Java 17+
+- Swing (GUI)
+- MySQL 8.x
+- JDBC (MySQL Connector)
 - IntelliJ IDEA
 
 ## 📁 폴더 구조
+
+```
 JAVA_Project/
+├── lib/                       # 외부 라이브러리 (JDBC 등)
+│   ├── mysql-connector-j-8.3.0.jar
+│   └── protobuf-java-3.25.1.jar
 │
-├── src/               # 자바 소스 코드
-│   └── Project/src/   # 실제 실행 클래스(StudentGUI 등)
+├── out/                       # 컴파일된 클래스 파일 (IDE 자동 생성)
+│   └── production/JAVA_Project/
+│       └── Project/src/
+│           └── StudentGUI.class
 │
-├── lib/               # JDBC 등 외부 라이브러리 (예: mysql-connector)
+├── src/                       # 메인 자바 소스 디렉터리
+│   └── Project/
+│       └── src/
+│           ├── Student.java              # 학생 클래스 (DTO)
+│           ├── StudentDAO.java           # DB 연결 및 로직
+│           ├── StudentGUI.java           # Swing GUI 메인 클래스
+│           └── DBUtil.java               # JDBC 연결 유틸리티
 │
-├── out/               # 컴파일된 클래스 파일
-│
-└── .gitignore         # Git에서 제외할 파일 설정
+├── .gitignore                 # Git 추적 제외 설정
+├── JAVA_Project.iml           # IntelliJ 프로젝트 설정 파일
+└── README.md                  # 프로젝트 설명 파일 (이 파일)
+```
+
+## 📊 시스템 구성도
+
+```
+[사용자 입력]
+      ↓
+[StudentGUI.java] ⇄ [StudentDAO.java] ⇄ [MySQL DB]
+      ↓                     ↑
+[화면 출력]         [DB 연결: DBUtil.java]
+```
 
 ## ⚙️ 실행 방법
 
 1. 이 저장소를 클론합니다:
+
 ```bash
 git clone https://github.com/Lee-sung-il/JAVA_Project.git
+```
 
+2. MySQL에 데이터베이스 및 테이블을 생성합니다:
+
+```sql
+CREATE DATABASE studentdb;
+USE studentdb;
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    gender CHAR(1)
+);
+```
+
+3. `StudentDAO.java` 또는 설정 파일에 DB 연결 정보 입력:
+
+```java
 String url = "jdbc:mysql://localhost:3306/studentdb";
 String user = "root";
 String password = "yourpassword";
 ```
+
+4. IntelliJ에서 `StudentGUI` 실행
+
+## ✨ 추후 개선 사항
+
+- 검색 기능 추가
+- 성적 관리 기능 확장
+- 로그인 및 권한 관리 추가
+
+## 📜 라이선스
+
+MIT License  
+Copyright (c) 2025
