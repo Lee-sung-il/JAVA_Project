@@ -23,7 +23,13 @@
 ## 실행 화면
 
 
-<img src="https://github.com/user-attachments/assets/f47ff147-b099-4308-ba10-aca6fac118ef" width="1000"/>
+![Image](https://github.com/user-attachments/assets/b256776a-09bc-4734-ac46-01f1daac669d)
+
+![Image](https://github.com/user-attachments/assets/a1eaef45-215a-4e22-a5e9-87a9d6ba8c51)
+
+![Image](https://github.com/user-attachments/assets/9470a666-a37c-4f95-af16-330d2d44d5ad)
+
+![Image](https://github.com/user-attachments/assets/3a4e5259-544e-4e9b-abf5-ebd1ed285b20)
 
 ## 📁 폴더 구조
 
