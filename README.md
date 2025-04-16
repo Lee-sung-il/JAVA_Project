@@ -23,7 +23,7 @@
 ## 실행 화면
 
 
-<img src="https://github.com/user-attachments/assets/3a2d1b57-64b2-4a02-acff-68eca08d27c7" width="800"/>
+<img src="https://github.com/user-attachments/assets/f47ff147-b099-4308-ba10-aca6fac118ef" width="1000"/>
 
 ## 📁 폴더 구조
 
