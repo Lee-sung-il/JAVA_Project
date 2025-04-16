@@ -13,7 +13,7 @@
 
 ## 🛠️ 사용 기술
 
-- Java 17+
+- Java 
 - Swing (GUI)
 - MySQL 8.x
 - JDBC (MySQL Connector)
