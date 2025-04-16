@@ -21,7 +21,7 @@
 
 
 ## 실행 화면
-<!-- Uploading "read.gif"... -->
+Uploading "read.gif"
 
 ## 📁 폴더 구조
 
