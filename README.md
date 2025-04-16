@@ -19,6 +19,10 @@
 - JDBC (MySQL Connector)
 - IntelliJ IDEA
 
+
+## 실행 화면
+<!-- Uploading "read.gif"... -->
+
 ## 📁 폴더 구조
 
 ```
